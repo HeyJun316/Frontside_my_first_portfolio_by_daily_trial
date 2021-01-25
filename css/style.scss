@@ -1,0 +1,1482 @@
+$font-color-bace: #3f51b5;
+$font-color-active: red;
+$font-card-color: #6f7579;
+$layout-width-canvas: 1366px;
+$layout-width-inner: 1088px;
+
+// ブレークポイント
+$breakpoints: (
+  "sp": "(max-width: 767px)",
+  "tab-only": "(min-width: 768px) and (max-width: #{$layout-width-inner - 1px})",
+  "tab": "(max-width: #{$layout-width-inner - 1px})",
+  "pc": "(min-width: #{$layout-width-inner})"
+);
+
+//メディアクエリ用のmixinを定義。デフォ値はmd
+@mixin mq($breakpoint: md) {
+  //map-get(マップ型変数, キー)で値を取得
+  @media #{map-get($breakpoints, $breakpoint)} {
+    //この中をカスタムできる
+    @content;
+  }
+}
+
+a {
+  text-decoration: none;
+}
+img {
+  width: 100%;
+  height: auto;
+}
+
+body {
+  font-family: "游ゴシック Medium", "Yu Gothic Medium", "游ゴシック体", "YuGothic", "ヒラギノ角ゴ ProN W3",
+    "Hiragino Kaku Gothic ProN", "メイリオ", "Meiryo", "verdana", sans-serif;
+  font-size: 16px;
+  width: 100%;
+  margin: 0;
+  color: #333333;
+}
+header {
+  background: $font-color-bace;
+  width: 100%;
+  top: 0;
+  left: 0;
+  height: 100px;
+  position: fixed;
+  z-index: 100;
+  transition: all 0.5s ease-in-out 0s;
+
+  @include mq(tab) {
+    height: 95px;
+  }
+
+  @include mq(sp) {
+    height: 60px;
+  }
+}
+.inner {
+  display: flex;
+  height: auto;
+  max-width: 1086px;
+  margin: 0 auto;
+  min-width: 500px;
+}
+.h-left a {
+  &:hover {
+    opacity: 0.4;
+  }
+}
+.h-left img {
+  width: 200px;
+  margin-right: auto;
+  padding-top: 27px;
+  transition: all 0.5s ease-in-out 0s;
+  @include mq(tab) {
+    width: 180px;
+    padding-top: auto;
+    margin-left: 5%;
+  }
+  @include mq(sp) {
+    width: 148px;
+    padding: 15px 0 0 5px;
+  }
+}
+.h-right {
+  display: inline-block;
+  margin-left: auto;
+  padding-top: 44px;
+  @include mq(tab) {
+    margin-left: auto;
+  }
+}
+.navs {
+  list-style: none;
+  display: flex;
+}
+.navs a {
+  position: relative;
+  font-weight: normal;
+  margin-right: 33px;
+  color: white;
+  text-decoration: none;
+  transition: all 0.5s ease-in-out 0s;
+
+  @include mq(tab) {
+  }
+  @include mq(sp) {
+    display: none;
+  }
+}
+
+.in-active {
+  padding-right: 10px;
+  position: relative;
+  @include mq(tab) {
+    padding-right: 5px;
+  }
+
+  &:after {
+    position: absolute;
+    content: "";
+    width: 0px;
+    height: 0px;
+    border-bottom: 2px solid $font-color-active;
+    top: 20px;
+    opacity: 0;
+    left: 0px;
+    transition: all 0s ease-in-out 0s;
+  }
+  &:hover,
+  &.underline {
+    &::after {
+      width: 90%;
+      cursor: pointer;
+      opacity: 1;
+    }
+  }
+  // day24
+}
+
+.swiper-slide {
+  background-image: url(../img/mainvisual.png);
+  background-size: cover;
+  height: 555px;
+  width: 100%;
+  min-width: 40%;
+  background-size: cover;
+  transition: all 0.5s ease-in-out 0s;
+  @include mq(tab) {
+    height: 500px;
+  }
+  @include mq(sp) {
+    height: auto;
+  }
+}
+.swiper-pagination-bullet {
+  width: 18px;
+  height: 18px;
+  background: #ffffff9e;
+  opacity: 0.5;
+  transition: all 0.5s ease-in-out 0s;
+  @include mq(tab) {
+    width: 13px;
+    height: 13px;
+  }
+  @include mq(tab) {
+    width: 10px;
+    height: 10px;
+  }
+}
+
+.swiper-pagination-bullet-active {
+  width: 16px;
+  height: 16px;
+  background: #2f7dc8;
+  opacity: 1;
+  transition: all 0.5s ease-in-out 0s;
+  @include mq(tab) {
+    width: 13px;
+    height: 13px;
+  }
+  @include mq(tab) {
+    width: 10px;
+    height: 10px;
+  }
+}
+.swiper-button-prev,
+.swiper-button-next {
+  width: 75px;
+  height: 75px;
+  z-index: 150;
+  margin: -80px -30px;
+  transition: all 0.5s ease-in-out 0s;
+
+  &:after {
+    content: "";
+  }
+  @include mq(tab) {
+    width: 50px;
+    height: 50px;
+    margin: -60px -25px;
+  }
+  @include mq(sp) {
+    width: 35px;
+    height: 35px;
+    margin: -60px 25px;
+  }
+}
+.swiper-button-prev {
+  background: transparent url(../img/slide-arrow-left.png) no-repeat center center / contain;
+  left: 15%;
+}
+.swiper-button-next {
+  background: transparent url(../img/slide-arrow-right.png) no-repeat center center / contain;
+  right: 15%;
+}
+.mainvisual {
+  padding-top: 90px;
+  width: 100%;
+  min-width: 40%;
+  position: relative;
+  background-size: cover;
+  transition: all 0.5s ease-in-out 0s;
+  @include mq(tab) {
+    height: auto;
+  }
+  @include mq(sp) {
+
+    height: auto;
+    padding-top: 0px;
+    margin-top: 60px;
+  }
+  .m-main h1 {
+    font-size: 68px;
+    font-family: bold;
+    margin: 0;
+    margin-top: 153px;
+    transition: all 0.5s ease-in-out 0s;
+    font-weight: 700;
+    @include mq(tab) {
+      font-size: 44px;
+    }
+    @include mq(sp) {
+      font-size: 36px;
+      display: inline-block;
+      margin-top: 50px;
+      line-height: 1.4;
+    }
+  }
+  .hidden-pc {
+    @include mq(pc) {
+      display: none;
+    }
+  }
+  .hidden-tab {
+    @include mq(tab) {
+      display: none;
+    }
+  }
+  .show-sp {
+    @include mq(sp) {
+      display: block;
+    }
+  }
+  .m-main p {
+    font-size: 38px;
+    margin: 0;
+    margin-top: 30px;
+    transition: all 0.5s ease-in-out 0s;
+    font-weight: 700;
+    @include mq(tab) {
+      font-size: 30px;
+      margin-top: 20px;
+    }
+    @include mq(sp) {
+      font-size: 20px;
+      margin-top: 10px;
+    }
+  }
+}
+.drawer-nav {
+  z-index: 200px;
+}
+button.drawer-hamburger {
+  display: none;
+  @include mq(tab) {
+    display: none;
+  }
+  @include mq(sp) {
+    display: block;
+    z-index: 200px;
+  }
+}
+.container {
+  text-align: center;
+}
+.m-btn {
+  border-radius: 13px;
+  border: 3px solid $font-color-bace;
+  background: $font-color-bace;
+  padding: 17px 81px;
+  display: inline-block;
+  margin-top: 90px;
+  transition: all 0.5s ease-in-out 0s;
+  @include mq(tab) {
+    margin-top: 50px;
+    padding: 12px 50px;
+    margin-bottom: 40px;
+  }
+  @include mq(sp) {
+    margin-top: 40px;
+    padding: 13px 30px;
+    margin-bottom: 100px;
+  }
+  &:hover {
+    transform: scale(1.1, 1.1);
+    cursor: pointer;
+  }
+}
+.m-btn a {
+  color: white;
+  font-weight: bold;
+  text-decoration: none;
+  font-size: 38px;
+  transition: all 0.5s ease-in-out 0s;
+
+  @include mq(tab) {
+    font-size: 25px;
+    font-weight: bold;
+  }
+  @include mq(sp) {
+    font-weight: bold;
+    font-size: 20px;
+  }
+}
+
+
+.card {
+  background: #efefef;
+  width: 100%;
+  padding-bottom: 137px;
+}
+
+.section-title {
+  padding-top: 70px;
+  text-align: center;
+  font-size: 60px;
+  font-weight: bold;
+  text-align: center;
+  position: relative;
+  transition: all 0.5s ease-in-out 0s;
+
+  @include mq(tab) {
+    font-size: 45px;
+    padding-top: 40px;
+  }
+  @include mq(sp) {
+    font-size: 40px;
+    padding-top: 40px;
+  }
+  &:after {
+    position: absolute;
+    content: "";
+    width: 70px;
+    height: 4px;
+    border-bottom: 5px solid $font-color-bace;
+    top: 100px;
+    padding-top: 50px;
+    left: 48%;
+    transition: all 0.5s ease-in-out 0s;
+
+    @include mq(tab) {
+      position: absolute;
+      content: "";
+      width: 50px;
+      height: 4px;
+      border-bottom: 3px solid $font-color-bace;
+      top: 80px;
+      padding-top: 40px;
+      left: 47.4%;
+    }
+    @include mq(sp) {
+      position: absolute;
+      content: "";
+      width: 35px;
+      border-bottom: 2.5px solid $font-color-bace;
+      top: 50px;
+      padding-top: 44px;
+      left: 47.4%;
+    }
+  }
+  h2 {
+    position: relative;
+    display: inline-block;
+  }
+}
+.c-inner {
+  margin-top: 100px;
+  transition: all 0.5s ease-in-out 0s;
+  max-width: 1106px;
+  @include mq(tab) {
+    max-width: 800px;
+  }
+}
+
+.c-items {
+  display: flex;
+  flex-wrap: wrap;
+}
+.c-item {
+  display: inline-block;
+  width: calc(33.333333333% - 25px * 2 / 3);
+  margin-top: 12px;
+  margin-right: 16px;
+  margin-bottom: 5px;
+  background-color: #fff;
+  padding-bottom: 16px;
+  transition: all 0.5s ease-in-out 0s;
+
+  @include mq(tab) {
+    width: calc(50% - 3px * 1 / 2);
+    margin-right: 2px;
+    &:nth-child(3n) {
+      margin-right: 2px;
+    }
+    &:nth-child(2n) {
+      margin-right: 0px;
+    }
+  }
+  @include mq(sp) {
+    width: 80%;
+    margin: 0 72px 10px;
+  }
+
+  &:hover {
+    opacity: 0.5;
+  }
+}
+
+.c-img {
+  padding: 16px 16px 26px 16px;
+}
+.c-info h2 {
+  text-decoration: none;
+  color: $font-card-color;
+  font-size: 20px;
+  padding-left: 16px;
+}
+.c-info p {
+  color: $font-card-color;
+  line-height: 1.5;
+  padding: 20px 16px 28px 16px;
+  font-size: 16px;
+}
+
+.n-items {
+  margin: 140px auto 0 auto;
+  transition: all 0.5s ease-in-out 0s;
+
+  @include mq(sp) {
+  }
+}
+.n-item01 {
+  transition: all 0.5s ease-in-out 0s;
+
+  border-bottom: 1px solid $font-card-color;
+  padding-bottom: 24.5px;
+  @include mq(tab) {
+    text-align: center;
+  }
+  @include mq(sp) {
+    text-align: center;
+  }
+}
+.n-item02 {
+  transition: all 0.5s ease-in-out 0s;
+  border-bottom: 1px solid $font-card-color;
+  padding-bottom: 16.5px;
+  padding: 16.5px 0 16.5px 0;
+  @include mq(tab) {
+    text-align: center;
+  }
+  @include mq(sp) {
+    text-align: center;
+  }
+}
+.n-item03 {
+  transition: all 0.5s ease-in-out 0s;
+  border-bottom: 1px solid $font-card-color;
+  padding-bottom: 16.5px;
+  padding: 16.5px 0 16.5px 0;
+  @include mq(tab) {
+    text-align: center;
+  }
+  @include mq(sp) {
+    text-align: center;
+  }
+}
+.n-item04 {
+  transition: all 0.5s ease-in-out 0s;
+  border-bottom: 1px solid $font-card-color;
+  padding-bottom: 16.5px;
+  padding: 16.5px 0 16.5px 0;
+  @include mq(tab) {
+    text-align: center;
+  }
+  @include mq(sp) {
+    text-align: center;
+  }
+}
+.n-item05 {
+  transition: all 0.5s ease-in-out 0s;
+  padding-bottom: 16.5px;
+  padding: 30px 0 16.5px 0;
+  @include mq(tab) {
+    text-align: center;
+  }
+  @include mq(sp) {
+    text-align: center;
+  }
+}
+
+.timelabel {
+  transition: all 0.5s ease-in-out 0s;
+  display: inline-block;
+  @include mq(tab) {
+    padding-bottom: 20px;
+  }
+  @include mq(sp) {
+    padding-bottom: 20px;
+  }
+}
+
+.n-time {
+  transition: all 0.5s ease-in-out 0s;
+  display: inline-block;
+  position: relative;
+}
+.n-label {
+  transition: all 0.5s ease-in-out 0s;
+  display: inline-block;
+  border-radius: 5px;
+  color: white;
+  background-color: #666666;
+  border: 2px solid #666666;
+  margin: 0 30px;
+  padding: 4px 18px;
+  &:hover {
+    opacity: 0.5;
+  }
+}
+.n-label02 {
+  transition: all 0.5s ease-in-out 0s;
+  display: inline-block;
+  border-radius: 5px;
+  color: white;
+  background-color: $font-color-active;
+  border: 2px solid $font-color-active;
+  margin: 0 30px;
+  padding: 4px 18px;
+  &:hover {
+    opacity: 0.5;
+  }
+}
+.n-label03 {
+  transition: all 0.5s ease-in-out 0s;
+  display: inline-block;
+  border-radius: 5px;
+  color: white;
+  background-color: $font-color-bace;
+  border: 2px solid $font-color-bace;
+  margin: 0 30px;
+  padding: 4px 18px;
+  &:hover {
+    opacity: 0.5;
+  }
+}
+.n-info {
+  transition: all 0.5s ease-in-out 0s;
+  display: inline-block;
+  a {
+    color: #333333;
+  }
+  &:hover {
+    opacity: 0.5;
+  }
+}
+.n-more {
+  transition: all 0.5s ease-in-out 0s;
+  color: $font-color-active;
+  text-align: center;
+  padding: 25px 0 29px 0;
+  position: relative;
+  &:after {
+    position: absolute;
+    content: "";
+    background-image: url(../img/news-arrow.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 15px;
+    height: 15px;
+    top: 37%;
+    left: 53%;
+    @include mq(sp) {
+      left: 55.5%;
+    }
+  }
+  a {
+    color: $font-color-active;
+  }
+  &:hover {
+    opacity: 0.5;
+  }
+}
+
+.price {
+  background: #efefef;
+}
+.p-item {
+  padding: 137px 0 115px 0;
+  display: flex;
+  transition: all 0.3s ease-in-out 0s;
+  @include mq(tab) {
+    padding: 80px 0;
+    margin: 0 auto;
+  }
+  @include mq(sp) {
+    display: block;
+    text-align: center;
+  }
+}
+.p-img {
+  margin-right: 125px;
+  width: 360px;
+  height: 300px;
+  transition: all 0.3s ease-in-out 0s;
+
+  @include mq(tab) {
+    margin-right: 80px;
+    width: 250px;
+    height: 200px;
+  }
+  @include mq(sp) {
+    width: 280px;
+    height: 180px;
+    margin: 0 auto;
+    display: inline-block;
+  }
+}
+.p-table {
+  width: 608px;
+  transition: all 0.3s ease-in-out 0s;
+  @include mq(tab) {
+    width: 430px;
+  }
+  @include mq(sp) {
+    width: 450px;
+    padding-top: 30px;
+  }
+}
+.table {
+  background-color: white;
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid black;
+  table-layout: fixed;
+  transition: all 0.3s ease-in-out 0s;
+
+  th,
+  td {
+    border: 1px solid black;
+    line-height: 1.5;
+    vertical-align: middle;
+    transition: all 0.3s ease-in-out 0s;
+    padding: 12px 16px;
+    @include mq(tab) {
+      padding: 8px 10px;
+    }
+    @include mq(sp) {
+      padding: 5px 7px;
+    }
+  }
+  th {
+    background: grey;
+    color: white;
+    font-weight: 700px;
+    text-align: center;
+    transition: all 0.3s ease-in-out 0s;
+    &:first-child {
+      width: 128px;
+      @include mq(tab) {
+        width: 80px;
+      }
+      @include mq(sp) {
+        width: 90px;
+      }
+    }
+  }
+  td {
+    text-align: right;
+  }
+}
+.p-attention {
+  padding-top: 25px;
+  @include mq(tab) {
+    padding-top: 10px;
+  }
+
+  a {
+    color: #333333;
+    border-bottom: 1px solid black;
+    &:hover {
+      opacity: 0.5;
+    }
+  }
+}
+
+.a-map {
+  padding: 132px 0 114px 0;
+  text-align: center;
+  margin: 0 auto;
+  width: 800px;
+  @include mq(tab) {
+    padding: 130px 0;
+  }
+  @include mq(sp) {
+    padding: 100px 0;
+  }
+  iframe {
+    width: 100%;
+    @include mq(tab) {
+      max-width: 650px;
+    }
+    @include mq(sp) {
+      max-width: 500px;
+    }
+  }
+}
+
+.a-btn {
+  padding-top: 50px;
+
+  @include mq(sp) {
+    margin-right: 13%;
+  }
+
+  .a-link {
+    background: $font-color-bace;
+    display: inline;
+    font-size: 20px;
+    color: white;
+    padding: 16px 59px 14px;
+    border-radius: 15px;
+    position: relative;
+    font-weight: 500;
+
+    @include mq(tab) {
+      font-size: 18px;
+      padding: 13px 50px 10px;
+      font-weight: 400;
+    }
+    @include mq(sp) {
+      font-size: 18px;
+      padding: 13px 45px 13px 40px;
+      margin-left: 150px;
+      font-weight: 400;
+    }
+
+    &:after {
+      position: absolute;
+      content: "";
+      width: 20px;
+      background: url(../img/icon-arrow-right.png) no-repeat top / contain;
+      height: 20px;
+      top: 30%;
+      right: 5%;
+    }
+    &:hover {
+      opacity: 0.5;
+    }
+  }
+}
+.a-info {
+  padding: 35px 15px 0;
+  display: flex;
+  flex-wrap: wrap;
+  width: 359px;
+  max-width: 100%;
+  @include mq(tab) {
+    padding: 20px 75px 0;
+  } //
+  @include mq(sp) {
+    padding: 20px 15% 0;
+  }
+  dt,
+  dd {
+    padding: 10px;
+    margin: 0;
+  }
+  dt {
+    width: 118px;
+    text-align: left;
+  }
+}
+
+///アコーディオン
+
+.a-click {
+  background-color: $font-color-bace;
+  margin: 10px;
+  padding: 6px 56px;
+  color: white;
+  font-weight: 700;
+  text-align: left;
+  cursor: pointer;
+  position: relative;
+  &::before {
+    position: absolute;
+    content: "Q";
+    left: 30px;
+  }
+}
+.a-icon {
+  width: 12px;
+  background: transparent url(../img/icon-plus.png) no-repeat center center/contain;
+  height: 12px;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  position: absolute;
+  &.a-open {
+    background-image: url(../img/icon-minus.png);
+  }
+}
+
+.contact {
+  background: #efefef;
+  padding: 0 0 89px;
+}
+.controls {
+  background: white;
+  margin: 0 auto;
+  width: 800px;
+  height: 924px;
+  @include mq(tab) {
+    height: 824px;
+    width: 700px;
+  }
+  @include mq(sp) {
+    height: 800px;
+    width: 680px;
+  }
+  dl {
+    padding: 57px 43px 60px 52px;
+    @include mq(tab) {
+      padding: 50px 40px 50px 45px;
+    }
+    @include mq(sp) {
+      padding: 35px 38px 45px 45px;
+    }
+  }
+  .control {
+    display: flex;
+    margin-bottom: 51px;
+    @include mq(tab) {
+      margin-bottom: 40px;
+    }
+    @include mq(sp) {
+      display: block;
+      text-align: center;
+      margin-bottom: 15px;
+    }
+
+    dt {
+      width: 200px;
+      height: auto;
+      padding-top: 24px;
+      @include mq(tab) {
+        width: 170px;
+        height: auto;
+        padding-top: 10px;
+      }
+      @include mq(sp) {
+        width: auto;
+        height: auto;
+        margin-bottom: 10px;
+        text-align: left;
+      }
+    }
+    .c-label {
+      font-size: 18px;
+      font-weight: 700;
+      @include mq(tab) {
+        font-size: 14px;
+        font-weight: 500;
+        padding-bottom: 1px;
+      }
+      @include mq(tab) {
+        padding-right: 45px;
+      }
+    }
+  }
+}
+.hissu {
+  position: relative;
+
+  &:after {
+    font-size: 14px;
+    position: absolute;
+    content: "必須";
+    border-radius: 10px;
+    width: 40px;
+    height: 18px;
+    background: red;
+    color: white;
+    top: 150%;
+    left: 4px;
+    text-align: center;
+    padding: 2.5px 2px;
+    @include mq(tab) {
+      font-size: 12px;
+      width: 34px;
+      height: 10px;
+      padding: 3px 4px 6px 4px;
+      top: 105%;
+    }
+    @include mq(sp) {
+      top: 50%;
+      left: auto;
+      right: 0;
+      transform: translateY(-50%);
+    }
+  }
+}
+select {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #999;
+  background: transparent url(../img/select-arrow.png) no-repeat center right 18px / 24px 15px;
+  right: 10%;
+}
+
+.c-radio {
+  margin-bottom: 6px;
+  @include mq(tab) {
+    margin-bottom: 6px;
+  }
+  @include mq(sp) {
+    margin-top: 50px;
+    margin-bottom: -20px;
+  }
+}
+.hissu-dt {
+  @include mq(sp) {
+    margin-bottom: 25px;
+  }
+}
+.real-dt {
+  margin-bottom: 0px;
+}
+
+.form-input {
+  border: 1px solid #707070;
+  width: 508px;
+  height: 56px;
+  color: #cccccc;
+  padding-left: 16px;
+  font-size: 14px;
+  font-family: 16px;
+  @include mq(tab) {
+    width: 431px;
+    height: 46px;
+  }
+  @include mq(sp) {
+    width: 100%;
+    height: 30px;
+  }
+}
+.form-select {
+  width: 528px;
+  height: 60px;
+  border: 1px solid #707070;
+  padding-left: 16px;
+  color: #cccccc;
+  @include mq(tab) {
+    width: 450px;
+    height: 46px;
+  }
+  @include mq(sp) {
+    width: 616px;
+    height: 40px;
+  }
+}
+.textarea {
+  width: 508px;
+  height: 226px;
+  border: 1px solid #707070;
+  padding-top: 10px;
+  padding-left: 16px;
+  color: #cccccc;
+  @include mq(tab) {
+    width: 428px;
+    height: 250px;
+  }
+  @include mq(sp) {
+    width: 100%;
+    height: 170px;
+  }
+}
+
+
+input[type="radio"] {
+  display: none;
+}
+.radio01 {
+  top: -24px;
+  left: -27px;
+  box-sizing: border-box;
+  display: inline-block;
+  padding: 12px 3px 10px 75px;
+  position: relative;
+  width: auto;
+  @include mq(tab) {
+    padding: 42px 3px 8px 65px;
+  }
+  @include mq(sp) {
+    padding: 10px 3px 8px 41px;
+    display: block;
+    margin-top: 10px;
+  }
+  &:before {
+    background: #fff;
+    border: 1px solid #231815;
+    border-radius: 50%;
+    display: block;
+    height: 30px;
+    width: 30px;
+    content: "";
+    left: 20%;
+    margin-top: -9px;
+    position: absolute;
+    @include mq(tab) {
+      height: 30px;
+      width: 30px;
+      margin-top: -8px;
+      left: 22%;
+    }
+    @include mq(sp) {
+      height: 30px;
+      width: 30px;
+      margin-top: -10px;
+      left: 0;
+    }
+  }
+  &:after {
+    background: #3f51b5;
+    border-radius: 50%;
+    content: "";
+    display: block;
+    height: 18px;
+    width: 18px;
+    opacity: 0;
+    position: absolute;
+    top: 26%;
+    left: 25%;
+    transition: opacity 0.3s ease 0s;
+    @include mq(tab) {
+      top: 62%;
+      left: 28%;
+    }
+    @include mq(sp) {
+      top: 21%;
+      left: 1.3%;
+    }
+  }
+}
+
+input[type="radio"]:checked + .radio01:after {
+  opacity: 1;
+}
+
+.c-check {
+  margin-bottom: 0;
+}
+input[type="checkbox"] {
+  display: none;
+}
+.c-checkbox01 {
+  margin: 0 auto;
+  box-sizing: border-box;
+  display: inline-block;
+  padding: 12px 0 0 45px;
+  position: relative;
+  width: auto;
+  @include mq(tab) {
+    padding: 8px 0 0 46px;
+  }
+  @include mq(sp) {
+    padding: 8px 0 30px 46px;
+  }
+
+  a {
+    color: #333333;
+    border-bottom: 1px solid #333333;
+  }
+  &:before {
+    background: #fff;
+    border: 1px solid #707070;
+    content: "";
+    height: 30px;
+    width: 30px;
+    left: 5px;
+    margin-top: -8px;
+    position: absolute;
+    top: 50%;
+    @include mq(tab) {
+      margin-top: -7px;
+      left: 10px;
+    }
+    @include mq(sp) {
+      margin-top: -27px;
+      left: 0;
+    }
+  }
+  &:after {
+    background-image: url(../img/icon-check.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    content: "";
+    height: 22px;
+    left: 7px;
+    margin-top: -7px;
+    opacity: 0;
+    position: absolute;
+    top: 60%;
+    transition: opacity 0.3s ease 0s;
+    width: 28px;
+    @include mq(tab) {
+      top: 68%;
+      left: 11px;
+    }
+    @include mq(sp) {
+      top: 23%;
+      left: 2px;
+      width: 30px;
+    }
+  }
+}
+input[type="checkbox"]:checked + .c-checkbox01::after {
+  opacity: 1;
+}
+
+.submit {
+  margin-top: 5px;
+  text-align: center;
+  margin-bottom: 50px;
+
+  @include mq(tab) {
+    margin-bottom: 45px;
+  }
+
+  .send {
+    box-shadow: 0 3px 6px rgba(#000, 0.16);
+
+    top: -10px;
+    font-size: 22px;
+    color: white;
+    background: #3f51b5;
+    padding: 14px 87px;
+    border-radius: 10px;
+    font-weight: 700;
+    position: relative;
+    &:after {
+      position: absolute;
+      content: "";
+      background: url(../img/icon-arrow-right.png);
+      width: 100px;
+      height: 1000px;
+      top: 40%;
+      right: 40%;
+    }
+
+    @include mq(tab) {
+      padding: 10px 67px;
+      font-size: 17px;
+    }
+    @include mq(sp) {
+      padding: 10px 67px;
+      max-width: 100%;
+      width: 260px;
+    }
+    &:hover {
+      opacity: 0.5;
+    }
+  }
+}
+
+footer {
+  width: 100%;
+  height: auto;
+  background: linear-gradient(to top, #333333, #666666);
+}
+.f-items {
+  color: white;
+  display: flex;
+  padding-top: 100px;
+  @include mq(tab) {
+    padding-top: 72px;
+  }
+  @include mq(sp) {
+    display: block;
+    padding-top: 62px;
+  }
+}
+.l-item {
+  padding-left: 158px;
+  width: 33%;
+  @include mq(tab) {
+    padding-left: 35px;
+  }
+  @include mq(sp) {
+    padding-left: 16px;
+    width: 100%;
+    margin-bottom: 7%;
+  }
+  img {
+    width: 200px;
+    margin-right: auto;
+    padding-bottom: 30px;
+    transition: all 0.5s ease-in-out 0s;
+    @include mq(tab) {
+      width: 200px;
+    }
+    @include mq(sp) {
+      width: 200px;
+      padding-top: 10px;
+    }
+    &:hover {
+      opacity: 0.5;
+    }
+  }
+  p {
+    padding-bottom: 15px;
+  }
+}
+.ce-item {
+  width: 33%;
+  @include mq(tab) {
+    padding-top: 15px;
+    width: 30%;
+  }
+  @include mq(sp) {
+    width: 100%;
+    padding-left: 13px;
+    margin-bottom: 6%;
+  }
+  ul {
+    padding: 8px 0 0 83px;
+    display: flex;
+    @include mq(tab) {
+      padding: 3px 0 0 0px;
+    }
+    @include mq(sp) {
+    }
+  }
+  li {
+    padding-right: 21px;
+  }
+}
+.copyright {
+  padding-bottom: 24px;
+
+  margin-top: 50px;
+  color: white;
+  text-align: center;
+}
+
+.ce-item a {
+  color: white;
+  &:hover {
+    opacity: 0.5;
+  }
+}
+.r-item {
+  width: 33%;
+  padding-top: 5px;
+  padding-left: 9%;
+  @include mq(sp) {
+    padding-top: 2px;
+    width: 100%;
+    padding-left: 0;
+  }
+  .f-sns ul {
+    display: flex;
+    margin-left: 83px;
+    @include mq(tab) {
+      margin-top: 10px;
+    }
+    @include mq(sp) {
+      text-align: center;
+      margin-left: 0;
+      justify-content: center;
+    }
+  }
+  .f-sns img {
+    padding-right: 15px;
+    width: 30px;
+    height: 30x;
+    @include mq(sp) {
+      margin: 0 auto;
+      text-align: center;
+    }
+    &:hover {
+      opacity: 0.5;
+    }
+  }
+}
+.totop {
+  position: relative;
+  img {
+    z-index: 1;
+    position: absolute;
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    right: 2%;
+    bottom: 3%;
+    @include mq(sp) {
+      width: 42px;
+      height: 42px;
+      bottom: 5px;
+      right: 5px;
+    }
+  }
+  &:hover {
+    opacity: 0.5;
+  }
+}
+
+
+.open,
+.close {
+  cursor: pointer;
+}
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(170, 165, 165);
+  z-index: 1;
+  display: none;
+}
+.modal {
+  position: fixed;
+  overflow: scroll;
+  z-index: 2;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 900px;
+  height: 652px;
+  background: #ffffff;
+  display: none;
+  @include mq(tab) {
+    width: 700px;
+    height: 590px;
+  }
+  @include mq(sp) {
+    width: 600px;
+    height: 450px;
+  }
+  .modal-title {
+    font-size: 24px;
+    padding-top: 70px;
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    position: relative;
+    transition: all 0.5s ease-in-out 0s;
+    @include mq(tab) {
+      font-size: 20px;
+      padding-top: 50px;
+    }
+    @include mq(sp) {
+      font-size: 18px;
+      padding-top: 45px;
+    }
+    &:after {
+      position: absolute;
+      content: "";
+      width: 70px;
+      height: 4px;
+      border-bottom: 5px solid $font-color-bace;
+      top: 60px;
+      padding-top: 50px;
+      left: 45%;
+      transition: all 0.5s ease-in-out 0s;
+      @include mq(tab) {
+        top: 50px;
+        height: 3px;
+      }
+      @include mq(sp) {
+        top: 30px;
+        width: 45px;
+        height: 1px;
+      }
+    }
+  }
+  .modal-inner {
+    margin: 100px 60px 20px 60px;
+    position: relative;
+    @include mq(tab) {
+      margin: 80px 55px 15px 55px;
+    }
+    .modal-subtitle {
+      margin-top: 40px;
+      font-size: 20px;
+      @include mq(tab) {
+        font-size: 16px;
+        margin-top: 50px;
+      }
+      @include mq(sp) {
+        font-size: 15px;
+        margin-top: 38px;
+      }
+      &:before {
+        position: absolute;
+        width: 4px;
+        height: 20px;
+        left: -10px;
+        content: "";
+        background-color: $font-color-bace;
+        @include mq(tab) {
+          height: 14px;
+        }
+        @include mq(tab) {
+          height: 16px;
+        }
+      }
+    }
+    p {
+      margin-top: 30px;
+      line-height: 1.5;
+      color: #707070;
+      @include mq(tab) {
+        font-size: 14px;
+        margin-top: 25px;
+      }
+      @include mq(sp) {
+        font-size: 10px;
+        margin-top: 20px;
+      }
+    }
+  }
+  .close {
+    text-align: center;
+    .modal-btn {
+      background-color: $font-color-bace;
+      color: white;
+      font-size: 16px;
+      padding: 10px 64px;
+      border-radius: 5px;
+      margin: 50px 0;
+      @include mq(tab) {
+        padding: 8px 50px;
+        margin: 40px 0;
+        font-size: 14px;
+      }
+      @include mq(sp) {
+        padding: 6px 40px;
+        margin: 35px 0;
+        font-size: 10px;
+      }
+    }
+  }
+}
